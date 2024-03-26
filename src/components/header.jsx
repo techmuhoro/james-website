@@ -34,7 +34,8 @@ export default function Header() {
             </div>
             <div>
                 <Link
-                    href={'/'}
+                    href="/docs/resume.pdf"
+                    target="_blank"
                     className="flex items-center gap-x-1 text-sm hover:underline"
                 >
                     <DownloadIcon size={18} />
