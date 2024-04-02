@@ -9,66 +9,15 @@ import {
     ArrowUpIcon,
 } from 'lucide-react';
 import Image from 'next/image';
-import EauctionImage from '@/assets/eauction.png';
-import Tickets4uImage from '@/assets/tickets4u.png';
-import DashboardImage from '@/assets/dashboard.png';
+import { projects } from './data';
 
-const projects = [
-    {
-        id: 'flip',
-        name: 'Flip',
-        shortDescription: 'A Claims Processing system',
-        description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum, distinctio.`,
-        cover: DashboardImage,
-        live: '/',
-        code: '',
-    },
-    {
-        id: 'eaqution',
-        name: 'Eaquction',
-        shortDescription: 'Online bidding',
-        description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum, distinctio.`,
-        cover: Tickets4uImage,
-        live: '/',
-        code: '',
-    },
-    {
-        id: 'tickets4u',
-        name: 'Tickets4U',
-        shortDescription: 'Primier Ticketing Application',
-        description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum, distinctio.`,
-        cover: EauctionImage,
-        live: '/',
-        code: '',
-    },
-
-    {
-        id: 'dashboard-template',
-        name: 'Dashboard',
-        shortDescription: 'Ready made dashboard template',
-        description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum, distinctio.`,
-        cover: Tickets4uImage,
-        live: '/',
-        code: '',
-    },
-
-    {
-        id: 'e-com',
-        name: 'E commerce',
-        shortDescription: 'Fully Fledged ecommerce',
-        description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum, distinctio.`,
-        cover: EauctionImage,
-        live: '/',
-        code: '',
-    },
-];
 export default function Projects() {
     const [showAll, setShowAll] = useState(false);
     const projectList = showAll ? projects : projects.slice(0, 3);
 
     return (
         <div>
-            <h1>Projects</h1>
+            <h1 className="mb-2 text-base capitalize">Projects</h1>
             <div className="space-y-5">
                 {projectList.map(project => (
                     <Project key={project.id} item={project} />
@@ -115,13 +64,25 @@ function Project({ item }) {
                             {item.description}
                         </p>
                         <div className="flex justify-end items-center gap-x-4">
-                            <Link href="/" className="hover:underline">
-                                <ExternalLinkIcon />
-                            </Link>
+                            {item?.liveLink && (
+                                <Link
+                                    href={item?.liveLink || ''}
+                                    target="_blank"
+                                    className="hover:underline"
+                                >
+                                    <ExternalLinkIcon />
+                                </Link>
+                            )}
 
-                            <Link href="/" className="hover:underline">
-                                <Code2Icon />
-                            </Link>
+                            {item?.codeLink && (
+                                <Link
+                                    href={item?.codeLink || ''}
+                                    target="_blank"
+                                    className="hover:underline"
+                                >
+                                    <Code2Icon />
+                                </Link>
+                            )}
                         </div>
                     </div>
                 </div>
